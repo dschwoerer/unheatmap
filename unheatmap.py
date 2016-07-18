@@ -130,6 +130,12 @@ class Application(tk.Frame):
                 mmax=cm
         self.colors_maxdiff=mmax
     def __analyze(self):
+        x=self.analyze[0]
+        y=self.analyze[1]
+        if x < 0 or y < 0 or x >= self.im.width() or y >= self.im.height() :
+            out='N/A'
+            self.menu.out.value.set(out)
+            return out
         col=self.pixels[self.analyze]
         cdiff=1000
         idiff=-1
