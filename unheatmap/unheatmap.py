@@ -207,13 +207,6 @@ class Menu1():
 class Config():
     stdout=False
     log=False
-conf=Config()
-try:
-    im=Image.open(sys.argv[1])
-except:
-    print("Usage:")
-    print("\t%s <path-to-image>"%sys.argv[0])
-    sys.exit(1)
 
 def calcdiff(c1,c2):
     diff=0;
@@ -242,7 +235,22 @@ def drawCross(canvas,p,size=2):
 def drawArrow(canvas, p1,p2):
     canvas.create_line(p1[0],p1[1],p2[0],p2[1])
 
-root = tk.Tk()
-app = Application()
-app.master.title('Un-Heat-Map')
-app.mainloop()
+conf = im = root = app = None
+
+def main():
+    global conf, im, root, app
+    conf=Config()
+    try:
+        im=Image.open(sys.argv[1])
+    except:
+        print("Usage:")
+        print("\t%s <path-to-image>"%sys.argv[0])
+        sys.exit(1)
+
+    root = tk.Tk()
+    app = Application()
+    app.master.title('Un-Heat-Map')
+    app.mainloop()
+
+if __name__ == "__main__":
+    main()
